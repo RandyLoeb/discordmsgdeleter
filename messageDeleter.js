@@ -11,18 +11,18 @@ class MessageDeleter {
   }
 
   doer = () => {
-	if (this._keepGoing) {
-		// eslint-disable-next-line no-eval
-		eval(this._getListFetchString).then((data) => data.json().then(j => {
-			if (j.messages && j.messages.length > 0) {
-				this.doDeletes([j.messages])
-			} else {
-				console.log('no more messages')
-			}
-		}))
-	} else {
-		console.log('no more fetching')
-	}
+	  if (this._keepGoing) {
+      // eslint-disable-next-line no-eval
+      eval(this._getListFetchString).then((data) => data.json().then(j => {
+        if (j.messages && j.messages.length > 0) {
+          this.doDeletes([j.messages])
+        } else {
+          console.log('no more messages')
+        }
+      }))
+    } else {
+      console.log('no more fetching')
+    }
   }
 
   doDeletes = (msgArys) => {
@@ -34,8 +34,7 @@ class MessageDeleter {
     })
     // eslint-disable-next-line no-eval
     const ary = ids.map(id => () => eval(this._deleteFetchString.replace('DUMMYMSG', id.id).replace('DUMMYCHAN', id.channel_id)))
-    // eslint-disable-next-line no-var
-	this._pending = []
+    this._pending = []
     for (var i = 0; i < ary.length; i++) {
       this._pending.push(setTimeout(ary[i], i * this._delay))
     }
@@ -43,18 +42,18 @@ class MessageDeleter {
   }
 
   start = () => {
-	this._keepGoing=true
+	  this._keepGoing=true
     this.doer()
   }
 
   changeDelay = (delay) {
-	this._delay = delay
+	  this._delay = delay
   }
 
   stop = () => {
-	this._keepGoing = false
-	this._pending.forEach(handle=>{
-		clearTimeout(handle)
-	})
+    this._keepGoing = false
+    this._pending.forEach(handle=>{
+      clearTimeout(handle)
+    })
   }
 }
