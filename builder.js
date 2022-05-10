@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const deleteTemplate = path.resolve(__dirname, 'deletetemplate.txt')
 const getListTemplate = path.resolve(__dirname, 'getlisttemplate.txt')
-const messageDeleterTemplate = path.resolve(__dirname, 'deleter.js')
+const messageDeleterTemplate = path.resolve(__dirname, 'messageDeleter.js')
 const deleteTemplateContents = fs.readFileSync(deleteTemplate).toString().trim()
 const getListTemplateContents = fs.readFileSync(getListTemplate).toString().trim()
 const messageDeleterTemplateContents = fs.readFileSync(messageDeleterTemplate).toString().trim()
