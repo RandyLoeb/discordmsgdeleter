@@ -4,6 +4,7 @@ const fs = require('fs')
 const deleteTemplate = path.resolve(__dirname, 'deletetemplate.txt')
 const getListTemplate = path.resolve(__dirname, 'getlisttemplate.txt')
 const messageDeleterTemplate = path.resolve(__dirname, 'messageDeleter.js')
+const outfile = path.resolve(__dirname, 'outfile.js')
 const deleteTemplateContents = fs.readFileSync(deleteTemplate).toString().trim()
 const getListTemplateContents = fs.readFileSync(getListTemplate).toString().trim()
 const messageDeleterTemplateContents = fs.readFileSync(messageDeleterTemplate).toString().trim()
@@ -26,4 +27,4 @@ var messageDeleter = new MessageDeleter(deleterfetch,getList,6000)
 messageDeleter.start()
 `
 
-console.log(outDelete)
+fs.writeFileSync(outfile, outDelete)
