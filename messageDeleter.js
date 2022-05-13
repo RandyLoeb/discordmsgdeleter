@@ -11,7 +11,7 @@ class MessageDeleter {
   }
 
   doer = () => {
-	  if (this._keepGoing) {
+    if (this._keepGoing) {
       // eslint-disable-next-line no-eval
       eval(this._getListFetchString).then((data) => data.json().then(j => {
         if (j.messages && j.messages.length > 0) {
@@ -42,17 +42,17 @@ class MessageDeleter {
   }
 
   start = () => {
-	  this._keepGoing=true
+    this._keepGoing = true
     this.doer()
   }
 
-  changeDelay = (delay) {
-	  this._delay = delay
+  changeDelay = (delay) => {
+    this._delay = delay
   }
 
   stop = () => {
     this._keepGoing = false
-    this._pending.forEach(handle=>{
+    this._pending.forEach(handle => {
       clearTimeout(handle)
     })
   }
